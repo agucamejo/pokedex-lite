@@ -1,1 +1,1 @@
-# pokedex-lite
+# The Pokedex Lite
