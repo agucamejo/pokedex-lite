@@ -1,0 +1,314 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Pokedex API",
+    "description": "API to provide access to the pokedex database",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Security"
+    },
+    {
+      "name": "Pokemon"
+    }
+  ],
+  "paths": {
+    "/login": {
+      "post": {
+        "tags": [
+          "Security"
+        ],
+        "summary": "Allow a user to be autenticated",
+        "operationId": "loginPOST",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/body"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "User was found on the system with valid credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_200"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid credentials"
+          }
+        },
+        "x-swagger-router-controller": "Security"
+      }
+    },
+    "/pokemon/{userId}": {
+      "get": {
+        "tags": [
+          "Pokemon"
+        ],
+        "summary": "Retrieves all pokemons given a specific user",
+        "operationId": "pokemonUserIdGET",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "All the pokemons owned by the user",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Pokemon"
+                  },
+                  "x-content-type": "application/json"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An error ocurred",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_500"
+                }
+              }
+            }
+          }
+        },
+        "x-swagger-router-controller": "Pokemon"
+      }
+    },
+    "/pokemon": {
+      "put": {
+        "tags": [
+          "Pokemon"
+        ],
+        "summary": "Edits a pokemon information in the system",
+        "operationId": "pokemonPUT",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Pokemon"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Pokemon was edited in the pokedex database"
+          },
+          "500": {
+            "description": "An error ocurred",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_500"
+                }
+              }
+            }
+          }
+        },
+        "x-swagger-router-controller": "Pokemon"
+      },
+      "post": {
+        "tags": [
+          "Pokemon"
+        ],
+        "summary": "Creates a new pokemon in the system",
+        "operationId": "pokemonPOST",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "pokemon": {
+                    "$ref": "#/components/schemas/Pokemon"
+                  },
+                  "userId": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Pokemon was created in the pokedex database"
+          },
+          "500": {
+            "description": "An error ocurred",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_500"
+                }
+              }
+            }
+          }
+        },
+        "x-swagger-router-controller": "Pokemon"
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Pokemon": {
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "name": {
+            "type": "string"
+          },
+          "lvl": {
+            "type": "number"
+          },
+          "evolutionId": {
+            "type": "number"
+          },
+          "abilities": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Pokemon_abilities"
+            }
+          }
+        },
+        "example": [
+          {
+            "id": 1,
+            "name": "Bulbasaur",
+            "types": [
+              {
+                "name": "Grass",
+                "image": "https://shorturl.at/dJuxu"
+              },
+              {
+                "name": "Poison",
+                "image": "https://shorturl.at/DYJce"
+              }
+            ],
+            "lvl": 5,
+            "evolutionId": 2,
+            "abilities": [
+              {
+                "name": "Overgrow",
+                "description": "Powers up Grass-type moves when the Pokémon's HP is low."
+              },
+              {
+                "name": "Chlorophyll",
+                "description": "Boosts the Pokémon's Speed stat in harsh sunlight."
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "name": "Charmander",
+            "types": [
+              {
+                "name": "Fire",
+                "image": "https://shorturl.at/0fOyZ"
+              }
+            ],
+            "lvl": 5,
+            "evolutionId": 3,
+            "abilities": [
+              {
+                "name": "Blaze",
+                "description": "Powers up Fire-type moves when the Pokémon's HP is low."
+              },
+              {
+                "name": "Solar Power",
+                "description": "Boosts the Pokémon's Sp. Atk stat in harsh sunlight, but also lowers its HP."
+              }
+            ]
+          }
+        ]
+      },
+      "body": {
+        "properties": {
+          "username": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        }
+      },
+      "inline_response_200": {
+        "properties": {
+          "username": {
+            "type": "string"
+          },
+          "userId": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "userId": "userId",
+          "username": "username"
+        }
+      },
+      "inline_response_500": {
+        "properties": {
+          "code": {
+            "type": "number"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "Pokemon_abilities": {
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "name": "name",
+          "description": "description"
+        }
+      }
+    },
+    "responses": {
+      "GenericError": {
+        "description": "An error ocurred",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/inline_response_500"
+            }
+          }
+        }
+      }
+    }
+  }
+}
