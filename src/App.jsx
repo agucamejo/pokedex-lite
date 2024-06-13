@@ -1,36 +1,32 @@
 import { useState } from 'react';
-import PokeList from './components/PokeList'
-import PokeLogin from './components/PokeLogin'
-import BtnAddPokemon from './components/BtnAddPokemon'
-import './App.css'
+import PokemonList from './components/PokemonList';
+import LoginForm from './components/LoginForm';
+import BtnAddPokemon from './components/BtnAddPokemon';
+import AddPokemonModal from './components/CreatePokemon';
+import useAuth from './hooks/useAuth';
+import './App.css';
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
-  const [user, setUser] = useState(null);
+  const { isLoggedIn, user, handleLogin, handleLogout } = useAuth();
+  const [showModal, setShowModal] = useState(false);
 
-  const handleLogin = (credentials) => {
-    //Agregar validaciones de credenciales y de autenticacion de usuario ya que ahora es siempre true.
-    setUser(credentials.userId);
-    setIsLoggedIn(true);
-  };
-
-  const handleLogout = () => {
-    // Agregar confirmación con modal. Agregar correcto manejo de user
-    setUser(null);
-    setIsLoggedIn(false);
-  };
+  const handleAddPokemon = () => setShowModal(true);
+  const handleModalClose = () => setShowModal(false);
 
   return (
     <>
       <h1>Pokedex - Lite</h1>
       {isLoggedIn ? (
         <div>
-          <PokeList />
-          <BtnAddPokemon />
+          <PokemonList userId={user.userId} />
+          <BtnAddPokemon onClick={handleAddPokemon} />
           <button className='btn-login' onClick={handleLogout}>Logout</button>
         </div>
       ) : (
-        <PokeLogin onLogin={handleLogin} />
+        <LoginForm onLogin={handleLogin} />
+      )}
+      {showModal && (
+        <AddPokemonModal userId={user.userId} onClose={handleModalClose} />
       )}
     </>
   );

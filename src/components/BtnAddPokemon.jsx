@@ -1,9 +1,17 @@
-const FloatingButton = () => {
+import PropTypes from 'prop-types'; 
+
+const BtnAddPokemon = ({ onClick }) => {
+
   return (
-    <div className="floating-button" >
+    <button className="floating-button" onClick={onClick}>
       New
-    </div>
+    </button>
   );
 };
 
-export default FloatingButton;
+BtnAddPokemon.propTypes = {
+  onClick: PropTypes.func.isRequired
+};
+
+
+export default BtnAddPokemon;
