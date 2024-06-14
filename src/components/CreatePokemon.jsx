@@ -121,7 +121,7 @@ const AddPokemonModal = ({ userId, onClose }) => {
             <input type="text" name="urlImagen" value={form.urlImagen} onChange={handleInputChange} required/>
           </div>
           <div className='abilities'>
-            <h3>Habilidades:</h3>
+            <h3>Abilities:</h3>
             {form.abilities.map((ability, index) => (
               <div key={index}>
                 <input type="text" name="name" value={ability.name} onChange={(e) => handleAbilityChange(index, e)} placeholder='Abilitie name' required />

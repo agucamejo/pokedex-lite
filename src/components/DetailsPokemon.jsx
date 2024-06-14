@@ -52,7 +52,7 @@ const PokemonDetails = ({ pokemon, onClose }) => {
             ))}
           </ul>
         ) : (
-          <p>Este Pokémon no tiene habilidades.</p>
+          <p>This pokemon has no abilities.</p>
         )}
       <button onClick={handleEditClick} className='btn-edit'>Edit Pokemon</button>
       </div>
