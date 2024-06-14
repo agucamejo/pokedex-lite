@@ -1,5 +1,15 @@
+/**
+ * This file manage the api's fetch request.
+ */
+
 const API_URL = 'http://localhost:4000';
 
+/**
+ * Fetches the list of pokemons associated with a specific user.
+ * @param {string} userId The ID of the user whose pokemons are to be fetched.
+ * @returns {Promise<Array>} An array of pokemons with additional details (types).
+ * @throws {Error} If there is an error fetching pokemons or parsing the response.
+ */
 export const fetchPokemons = async (userId) => {
   try {
     const response = await fetch(`${API_URL}/pokemon/${userId}`);
@@ -8,6 +18,7 @@ export const fetchPokemons = async (userId) => {
     }
     const data = await response.json();
 
+    // Transforming each pokemon object to add 'types' as an array of strings
     const pokemonsWithDetails = data.map(pokemon => ({
       ...pokemon,
       types: pokemon.types ? pokemon.types.split(',').map(type => type.trim()) : [],
@@ -20,6 +31,13 @@ export const fetchPokemons = async (userId) => {
   }
 };
 
+
+/**
+ * Adds a new pokemon to the server.
+ * @param {Object} pokemon The pokemon object to add.
+ * @returns {Promise<Object>} The created pokemon object from the server.
+ * @throws {Error} If there is an error while adding the pokemon.
+ */
 
 export const addPokemon = async (pokemon) => {
   try {
@@ -41,6 +59,13 @@ export const addPokemon = async (pokemon) => {
     throw error;
   }
 };
+
+/**
+ * Updates an existing pokemon on the server.
+ * @param {Object} pokemon The pokemon object to update.
+ * @returns {Promise<boolean>} True if the update was successful.
+ * @throws {Error} If there is an error while updating the pokemon.
+ */
 
 export const updatePokemon = async (pokemon) => {
   try {
@@ -65,7 +90,7 @@ export const updatePokemon = async (pokemon) => {
 
     return true;
   } catch (error) {
-    console.error('Error at update el Pokémon:', error);
+    console.error('Error at update Pokémon:', error);
     throw error;
   }
 };

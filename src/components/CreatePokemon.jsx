@@ -3,6 +3,13 @@ import PropTypes from 'prop-types';
 import Swal from 'sweetalert2'
 import { addPokemon } from '../services/pokemonServices';
 
+/**
+ * Modal component for adding a new Pokemon.
+ * @param {Object} props Component props.
+ * @param {number} props.userId The ID of the user adding the Pokemon.
+ * @param {function} props.onClose Function to call when closing the modal.
+ */
+
 const AddPokemonModal = ({ userId, onClose }) => {
   const [form, setForm] = useState({
     name: '',
@@ -18,6 +25,8 @@ const AddPokemonModal = ({ userId, onClose }) => {
     setForm((prevForm) => ({ ...prevForm, [name]: value }));
   }, []);
 
+
+  //Handles input changes for abilities where index is index of the ability being changed.
   const handleAbilityChange = useCallback((index, e) => {
     const { name, value } = e.target;
     setForm((prevForm) => {
@@ -27,6 +36,7 @@ const AddPokemonModal = ({ userId, onClose }) => {
     });
   }, []);
 
+  // Adds a new ability field to the form.
   const addAbility = useCallback(() => {
     setForm((prevForm) => ({
       ...prevForm,
@@ -34,6 +44,7 @@ const AddPokemonModal = ({ userId, onClose }) => {
     }));
   }, []);
 
+  // Remove an ability field to the form.
   const removeAbility = useCallback((index) => {
     setForm((prevForm) => ({
       ...prevForm,
@@ -41,12 +52,14 @@ const AddPokemonModal = ({ userId, onClose }) => {
     }));
   }, []);
 
+  //Handles form submission for adding a new Pokemon.
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { name, level, evolutionId, type, urlImagen, abilities } = form;
 
+    // Validate form fields
     if (!name || !level || !evolutionId || !type || !userId || !urlImagen || !abilities.length) {
-      alert('Por favor, complete todos los campos.');
+      alert('Please, complete all the form.');
       return;
     }
 

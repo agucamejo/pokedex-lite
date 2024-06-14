@@ -3,6 +3,14 @@ import { useState } from 'react';
 import Swal from 'sweetalert2'
 import { updatePokemon } from '../services/pokemonServices';
 
+/**
+ * Component for editing details of a Pokemon.
+ * @param {Object} props Component props.
+ * @param {Object} props.pokemon The Pokemon object to edit.
+ * @param {function} props.onClose Function to call when closing the modal.
+ * @returns {JSX.Element} JSX element representing the edit form for Pokemon details.
+ */
+
 const EditPokemon = ({ pokemon, onClose }) => {
   const [formData, setFormData] = useState({
     name: pokemon.name,
@@ -21,6 +29,7 @@ const EditPokemon = ({ pokemon, onClose }) => {
     });
   };
 
+  //Handles input changes for abilities where index is index of the ability being edited.
   const handleAbilityChange = (index, e) => {
     const { name, value } = e.target;
     const abilities = [...formData.abilities];
@@ -31,6 +40,7 @@ const EditPokemon = ({ pokemon, onClose }) => {
     });
   };
 
+  // Adds a new ability field to the form.
   const handleAddAbility = () => {
     setFormData({
       ...formData,
@@ -38,6 +48,7 @@ const EditPokemon = ({ pokemon, onClose }) => {
     });
   };
 
+  // Remove a new ability field to the form.
   const handleRemoveAbility = (index) => {
     const abilities = [...formData.abilities];
     abilities.splice(index, 1);
@@ -47,6 +58,7 @@ const EditPokemon = ({ pokemon, onClose }) => {
     });
   };
 
+  //Handles form submission to update the Pokemon.
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {

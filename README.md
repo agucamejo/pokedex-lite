@@ -1,7 +1,7 @@
 
 # Pokedex Lite
 
-The Pokedex Lite es una versión ligera del conocido Pokédex, desarrollada con React para el frontend, y Express, Node.js y MySQL para el backend.
+The Pokedex Lite es una versión ligera del conocido Pokédex, desarrollada con React y CSS.
 
 ## Funcionamiento de la Aplicación
 
@@ -33,15 +33,7 @@ La aplicación consta de un sistema de login en el que se corrobora si tienes un
 4.  **Creación de Pokémon**:
     
     -   Se permite la creación de un nuevo Pokémon en caso de encontrar uno.
-  
 
-## Estructura del Proyecto
-
--  `backend/`: Contiene el código del servidor y la API.
-
--  `frontend/`: Contiene el código del cliente (la aplicación React).
-
-  
 
 ## Configuración y Ejecución
 
@@ -55,35 +47,6 @@ git  clone  https://github.com/agucamejo/pokedex-lite.git
 cd  pokedex-lite  
 ```
 
-### Backend
-
-Navega  a  la  carpeta  del  backend:
-
-```bash
-cd  backend
-```
-
-Instala  las  dependencias:
-
-```bash
-npm  install
-```
-
-Ejecuta  el  servidor:
-
-```
-npm  run  dev
-```
-
-El  servidor  se  ejecutará  en  http://localhost:4000,  y  desde  aquí  se  deben  hacer  las  peticiones  desde  el  frontend.
-
-### Frontend
-
-Navega  a  la  carpeta  del  frontend:
-
-```bash
-cd  frontend
-```
 Instala  las  dependencias:
 
 ```bash
@@ -97,6 +60,9 @@ npm  run  dev
 ```
 
 La  aplicación  se  ejecutará  en  http://localhost:5173,  en  caso  de  que  ese  puerto  no  esté  ocupado.
+
+## Repositorio del Back-End 
+Este proyecto se complementa con el [repositorio del back-end](https://github.com/agucamejo/back-pokedex-lite).
 
 ### Licencia
 

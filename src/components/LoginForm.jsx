@@ -2,7 +2,14 @@ import { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import authService from '../services/authService'; 
 
-const PokeLogin = ({ onLogin }) => {
+/**
+ * Component for user login form.
+ * @param {Object} props Component props.
+ * @param {function} props.onLogin Function to call upon successful login.
+ * @returns {JSX.Element} JSX element representing the login form.
+ */
+
+const LoginForm = ({ onLogin }) => {
   const [form, setForm] = useState({ username: '', password: '' });
   const [message, setMessage] = useState('');
 
@@ -43,8 +50,8 @@ const PokeLogin = ({ onLogin }) => {
   );
 };
 
-PokeLogin.propTypes = {
-  onLogin: PropTypes.func.isRequired,
+LoginForm.propTypes = {
+  onLogin: PropTypes.func.isRequired, // Function to call upon successful login
 };
 
-export default PokeLogin;
+export default LoginForm;

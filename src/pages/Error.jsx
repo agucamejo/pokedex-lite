@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom'
 const Error = () =>{
   return (
     <div>
-      <h2>Parece que no es la Pokepágina que buscabas</h2>
-      <Link to="/"><button className="btn-logout" >Volver al inicio</button></Link>
+      <h3>It seems that it is not the Pokepage you were looking for</h3>
+      <Link to="/"><button className="btn-logout" >Back to home</button></Link>
     </div>
   )
 }

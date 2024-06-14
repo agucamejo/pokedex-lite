@@ -2,10 +2,20 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 import EditPokemon from './EditPokemon'; 
 
+/**
+ * Component for displaying details of a Pokemon.
+ * Allows editing of Pokemon details through EditPokemon component.
+ * @param {Object} props Component props.
+ * @param {Object} props.pokemon The Pokemon object to display details of.
+ * @param {function} props.onClose Function to call when closing the modal.
+ * @returns {JSX.Element} JSX element representing Pokemon details.
+ */
+
 const PokemonDetails = ({ pokemon, onClose }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   
+  // If no pokemon data is provided, do not render anything
   if (!pokemon) return null;
 
   const handleEditClick = () => {
