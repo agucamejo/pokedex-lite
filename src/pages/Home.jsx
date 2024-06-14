@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import BtnAddPokemon from '../components/BtnAddPokemon';
+import BtnAddPokemon from '../components/FloatingButton';
 import AddPokemonModal from '../components/CreatePokemon';
 import PokemonList from '../components/PokemonList';
 

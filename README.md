@@ -1,7 +1,7 @@
 
 # Pokedex Lite
 
-The Pokedex Lite es una versión ligera del conocido Pokédex, desarrollada con React para el frontend, y Node.js y MySQL para el backend.
+The Pokedex Lite es una versión ligera del conocido Pokédex, desarrollada con React para el frontend, y Express, Node.js y MySQL para el backend.
 
 ## Funcionamiento de la Aplicación
 

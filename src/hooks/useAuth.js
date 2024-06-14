@@ -1,25 +1,26 @@
 import { useState, useEffect } from 'react';
+import { getUserFromStorage, saveUserToStorage, removeUserFromStorage } from '../utils/storageUser';
 
 const useAuth = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    const storedUser = localStorage.getItem('user');
+    const storedUser = getUserFromStorage();
     if (storedUser) {
-      setUser(JSON.parse(storedUser));
+      setUser(storedUser);
       setIsLoggedIn(true);
     }
   }, []);
 
   const handleLogin = (data) => {
-    localStorage.setItem('user', JSON.stringify(data));
+    saveUserToStorage(data);
     setUser(data);
     setIsLoggedIn(true);
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('user');
+    removeUserFromStorage();
     setUser(null);
     setIsLoggedIn(false);
   };

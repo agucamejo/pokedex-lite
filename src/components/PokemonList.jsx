@@ -30,7 +30,7 @@ const PokeList = ({ userId }) => {
     <div>
       <h2>My Pokemons</h2>
       { pokemons ? (
-        <ul>
+        <ul className='list-container'>
           {pokemons.map(({  id, name, lvl, evolutionId, types, selectedType, urlImagen, abilities }) => (
             <li key={id} onClick={() => handlePokemonClick({  id, name, lvl, evolutionId, types, selectedType, urlImagen, abilities })}>
               <select value={selectedType} onChange={(event) => handleTypeChange(event, id)}>

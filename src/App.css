@@ -232,6 +232,15 @@ button[type='submit']:hover, .btn-logout:hover, .btn-edit:hover {
   padding: 10px 5px;
 }
 
+/* LIST */
+.list-container{
+  margin-bottom: 60px;
+}
+
+.list-container li{
+  margin: 10px 0px;
+}
+
 /* LOADER IMAGE */
 .loader {
   border: 8px solid rgba(0, 0, 0, 0.1);

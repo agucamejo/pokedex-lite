@@ -2,9 +2,9 @@ const API_URL = 'http://localhost:4000';
 
 export const fetchPokemons = async (userId) => {
   try {
-    const response = await fetch(`${API_URL}/pokemons/${userId}`);
+    const response = await fetch(`${API_URL}/pokemon/${userId}`);
     if (!response.ok) {
-      throw new Error('Error fetching pokemons porque la respuesta no es ok');
+      throw new Error('Error fetching pokemons');
     }
     const data = await response.json();
 
@@ -23,7 +23,7 @@ export const fetchPokemons = async (userId) => {
 
 export const addPokemon = async (pokemon) => {
   try {
-    const response = await fetch(`${API_URL}/pokemons`, {
+    const response = await fetch(`${API_URL}/pokemon`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -32,19 +32,19 @@ export const addPokemon = async (pokemon) => {
     });
 
     if (!response.ok) {
-      throw new Error('Error al agregar el Pokémon');
+      throw new Error('Error at create Pokémon');
     }
 
     return await response.json();
   } catch (error) {
-    console.error('Error al agregar el Pokémon:', error);
+    console.error('Error at create Pokémon:', error);
     throw error;
   }
 };
 
 export const updatePokemon = async (pokemon) => {
   try {
-    const response = await fetch(`${API_URL}/pokemons/${pokemon.id}`, {
+    const response = await fetch(`${API_URL}/pokemon/${pokemon.id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
@@ -60,12 +60,12 @@ export const updatePokemon = async (pokemon) => {
     });
 
     if (!response.ok) {
-      throw new Error('Error al actualizar el Pokémon');
+      throw new Error('Error at update Pokémon');
     }
 
     return true;
   } catch (error) {
-    console.error('Error al actualizar el Pokémon:', error);
+    console.error('Error at update el Pokémon:', error);
     throw error;
   }
 };

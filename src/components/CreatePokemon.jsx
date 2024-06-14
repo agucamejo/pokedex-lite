@@ -1,5 +1,6 @@
 import { useState, useCallback } from 'react';
 import PropTypes from 'prop-types'; 
+import Swal from 'sweetalert2'
 import { addPokemon } from '../services/pokemonServices';
 
 const AddPokemonModal = ({ userId, onClose }) => {
@@ -61,9 +62,18 @@ const AddPokemonModal = ({ userId, onClose }) => {
       });
 
       onClose();
-      window.location.reload();
+      Swal.fire({
+        title: "Good job!",
+        text: "Your pokemon was updated",
+        icon: "success"
+      }).then(() => {
+        window.location.reload(); 
+      });
     } catch (error) {
-      alert('Hubo un error al intentar agregar el Pokémon. Por favor, inténtelo de nuevo.');
+      Swal.fire({
+        text: "Your pokemon can not be created",
+        icon: "warning"
+      })
     }
   };
 

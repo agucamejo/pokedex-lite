@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
+import Swal from 'sweetalert2'
 import { updatePokemon } from '../services/pokemonServices';
 
 const EditPokemon = ({ pokemon, onClose }) => {
@@ -57,12 +58,24 @@ const EditPokemon = ({ pokemon, onClose }) => {
 
       if (success) {
         onClose();
-        window.location.reload();
+        Swal.fire({
+          title: "Good job!",
+          text: "Your pokemon was updated",
+          icon: "success"
+        }).then(() => {
+          window.location.reload(); 
+        });
       } else {
-        throw new Error('Error al actualizar el Pokémon');
+        Swal.fire({
+          text: "Your pokemon can not be updated",
+          icon: "warning"
+        })
       }
     } catch (error) {
-      alert('Error al enviar los datos de actualización:', error);
+      Swal.fire({
+        text: "Your pokemon can not be updated",
+        icon: "warning"
+      })
     }
   };
 
