@@ -13,5 +13,4 @@ BtnAddPokemon.propTypes = {
   onClick: PropTypes.func.isRequired
 };
 
-
 export default BtnAddPokemon;

@@ -72,84 +72,43 @@ const AddPokemonModal = ({ userId, onClose }) => {
       <div className="modal-content">
         <span className="close-button" onClick={onClose}>&times;</span>
         <form onSubmit={handleSubmit}>
-          <div>
-            <label>Name:</label>
-            <input
-              type="text"
-              name="name"
-              value={form.name}
-              onChange={handleInputChange}
-              required
-            />
+          <div className='row'>
+            <div className='name'>
+              <label>Name:</label>
+              <input type="text" name="name" value={form.name} onChange={handleInputChange} required/>
+            </div>
+            <div className='type'>
+              <label>Type:</label>
+              <input type="text" name="type" value={form.type} onChange={handleInputChange} required/>
+            </div>
+            
           </div>
-          <div>
-            <label>Level:</label>
-            <input
-              type="number"
-              name="level"
-              value={form.level}
-              onChange={handleInputChange}
-              min="0"
-              required
-            />
+          <div className='row'>
+            <div className='evolution'>
+              <label>Evolution:</label>
+              <input type="number" name="evolutionId" value={form.evolutionId} onChange={handleInputChange} min="0" required />
+            </div>
+            <div className='level'>
+              <label>Level:</label>
+              <input type="number" name="level" value={form.level} onChange={handleInputChange} min="0" required/>
+            </div>
           </div>
-          <div>
-            <label>Evolution:</label>
-            <input
-              type="number"
-              name="evolutionId"
-              value={form.evolutionId}
-              onChange={handleInputChange}
-              min="0"
-              required
-            />
+          <div className='imagen'>
+            <label>Image URL:</label>
+            <input type="text" name="urlImagen" value={form.urlImagen} onChange={handleInputChange} required/>
           </div>
-          <div>
-            <label>Type:</label>
-            <input
-              type="text"
-              name="type"
-              value={form.type}
-              onChange={handleInputChange}
-              required
-            />
-          </div>
-          <div>
-            <label>URL Imagen:</label>
-            <input
-              type="text"
-              name="urlImagen"
-              value={form.urlImagen}
-              onChange={handleInputChange}
-              required
-            />
-          </div>
-          <div>
+          <div className='abilities'>
             <h3>Habilidades:</h3>
             {form.abilities.map((ability, index) => (
               <div key={index}>
-                <label>Nombre de Habilidad:</label>
-                <input
-                  type="text"
-                  name="name"
-                  value={ability.name}
-                  onChange={(e) => handleAbilityChange(index, e)}
-                  required
-                />
-                <label>Descripción de Habilidad:</label>
-                <input
-                  type="text"
-                  name="description"
-                  value={ability.description}
-                  onChange={(e) => handleAbilityChange(index, e)}
-                  required
-                />
+                <input type="text" name="name" value={ability.name} onChange={(e) => handleAbilityChange(index, e)} placeholder='Abilitie name' required />
+                <input type="text" name="description" value={ability.description} onChange={(e) => handleAbilityChange(index, e)} placeholder='Abilitie description' required/>
                 {form.abilities.length > 1 && (
-                  <button type="button" onClick={() => removeAbility(index)}>Eliminar</button>
+                  <button type="button" onClick={() => removeAbility(index)} className='btn-delete'>Delete</button>
                 )}
               </div>
             ))}
-            <button type="button" onClick={addAbility}>Añadir Habilidad</button>
+            <button type="button" onClick={addAbility} className='btn-add'>Add abilitie +</button>
           </div>
           <button type="submit">Add Pokemon</button>
         </form>

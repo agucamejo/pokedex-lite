@@ -24,7 +24,7 @@ const PokemonDetails = ({ pokemon, onClose }) => {
     <div className="modal-overlay">
       <div className="modal-content">
         <span className="close-button" onClick={onClose}>&times;</span>
-        <h2>{pokemon.name}</h2>
+        <h3>{pokemon.name}</h3>
         <p>Level: {pokemon.lvl}</p>
         <p>Evolution: {pokemon.evolutionId}</p>
         <p>Types: {pokemon.types.join(', ')}</p>
@@ -32,7 +32,7 @@ const PokemonDetails = ({ pokemon, onClose }) => {
           <div className="loader"></div>
         )}
         <img src={pokemon.urlImagen} alt={pokemon.name} onLoad={handleImageLoad} style={{ width: '200px', height: '200px' }}/>
-        <h3>Habilidades:</h3>
+        <h3>Abilities:</h3>
         {pokemon.abilities && pokemon.abilities.length > 0 ? (
           <ul>
             {pokemon.abilities.map((ability) => (
@@ -44,10 +44,10 @@ const PokemonDetails = ({ pokemon, onClose }) => {
         ) : (
           <p>Este Pokémon no tiene habilidades.</p>
         )}
-      <button onClick={handleEditClick} className='btn-login'>Editar</button>
+      <button onClick={handleEditClick} className='btn-edit'>Edit Pokemon</button>
       </div>
       {isEditing && (
-        <EditPokemon pokemon={pokemon} onClose={handleEditClose} />
+        <EditPokemon pokemon={pokemon} onClose={handleEditClose}/>
       )}
     </div>
   );

@@ -70,85 +70,41 @@ const EditPokemon = ({ pokemon, onClose }) => {
     <div className="modal-overlay">
       <div className="modal-content">
         <span className="close-button" onClick={onClose}>&times;</span>
-        <h2>Editar Pokémon</h2>
+        <h2>Edit Pokemon</h2>
         <form onSubmit={handleSubmit}>
           <div>
-            <label>Nombre:</label>
-            <input
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-            />
+            <label>Name:</label>
+            <input type="text" name="name" value={formData.name} onChange={handleChange} required />
           </div>
           <div>
-            <label>Nivel:</label>
-            <input
-              type="number"
-              name="lvl"
-              value={formData.lvl}
-              onChange={handleChange}
-              required
-            />
+            <label>Level:</label>
+            <input type="number" name="lvl" value={formData.lvl} onChange={handleChange} required/>
           </div>
           <div>
-            <label>Evolución:</label>
-            <input
-              type="number"
-              name="evolutionId"
-              value={formData.evolutionId}
-              onChange={handleChange}
-              required
-            />
+            <label>Evolution:</label>
+            <input type="number" name="evolutionId" value={formData.evolutionId} onChange={handleChange} required/>
           </div>
           <div>
-            <label>Tipos:</label>
-            <input
-              type="text"
-              name="types"
-              value={formData.types}
-              onChange={handleChange}
-              required
-            />
+            <label>Type:</label>
+            <input type="text" name="types" value={formData.types} onChange={handleChange} required />
           </div>
           <div>
-            <label>URL de Imagen:</label>
-            <input
-              type="text"
-              name="urlImagen"
-              value={formData.urlImagen}
-              onChange={handleChange}
-              required
-            />
+            <label>Image URL:</label>
+            <input type="text" name="urlImagen" value={formData.urlImagen} onChange={handleChange} required />
           </div>
-          <h3>Habilidades:</h3>
+          <h3>Abilities:</h3>
           {formData.abilities.map((ability, index) => (
             <div key={index}>
-              <label>Nombre de Habilidad:</label>
-              <input
-                type="text"
-                name="name"
-                value={ability.name}
-                onChange={(e) => handleAbilityChange(index, e)}
-                required
-              />
-              <label>Descripción de Habilidad:</label>
-              <input
-                type="text"
-                name="description"
-                value={ability.description}
-                onChange={(e) => handleAbilityChange(index, e)}
-                required
-              />
+              <input type="text" name="name" value={ability.name} onChange={(e) => handleAbilityChange(index, e)} placeholder='Ability name' required/>
+              <input type="text" name="description" value={ability.description} onChange={(e) => handleAbilityChange(index, e)} placeholder='Ability description' required />
               {formData.abilities.length > 1 && (
-                  <button type="button" onClick={() => handleRemoveAbility(index)}>Eliminar</button>
+                  <button type="button" onClick={() => handleRemoveAbility(index)} className='btn-delete'>Delete</button>
               )}
               
             </div>
           ))}
-          <button type="button" onClick={handleAddAbility}>Agregar Habilidad</button>
-          <button type="submit">Guardar</button>
+          <button type="button" onClick={handleAddAbility} className='btn-add'>Add ability +</button>
+          <button type="submit">Send edit</button>
         </form>
       </div>
     </div>

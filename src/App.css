@@ -1,5 +1,4 @@
 /* CSS Config */
-
 * { margin: 0; padding: 0; }
 *, *::before, *::after {box-sizing: border-box; }
 
@@ -22,35 +21,108 @@ img, video, svg { height: auto; max-width: 100%; }
 }
 
 :root{
-  display: flex;
+  display: grid;
   align-items: center;
   justify-content: center;
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: #5B9BD5;
+  text-align: center;
+  --base-white: #FFFFFF;
+  --base-red: #FF6B6B;
+  --primary-color: #5B9BD5;
+
+  color: var(--primary-color);
+}
+
+/* GENERALS */
+/* Titles */
+h1{
+  color: var(--primary-color);
+  font-size: 30px;
+}
+
+h2 {
+  font-size: 25px;
+  margin: 20px 0px;
   text-align: center;
 }
 
-h1{
-  color: #5B9BD5;
+h3{
+  font-size: 20px;
+  margin: 10px 0px;
 }
 
-.modal-overlay {
+li{
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  border: 1px solid var(--primary-color);
+  align-items: center;
+  justify-content: space-between;
+  padding: 30px;
+  text-align: left;
+}
+
+li select{
+  border-radius: 10px;
+  padding: 2px;
+  width: 100px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  text-align: left;
+}
+
+input{
+  width: 100%;
+  padding: 8px;
+  font-size: 16px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+/* Buttons */
+.floating-button {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.7);
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  background-color: var(--base-white);; 
+  color: var(--primary-color); 
+  border-radius: 100%;
+  text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 999; 
+  transition: background-color 0.3s, color 0.3s;
+  border: 1px solid var(--primary-color);
 }
 
-.modal-content {
-  background: white;
-  padding: 20px;
-  border-radius: 8px;
-  position: relative;
+.floating-button:hover {
+  background-color: var(--primary-color); 
+  color: #FFF; 
+}
+
+button[type='submit'], .btn-logout, .btn-edit {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  color: #fff;
+  background-color: var(--primary-color); 
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+button[type='submit']:hover, .btn-logout:hover, .btn-edit:hover {
+  background-color: #80b4e5;
 }
 
 .close-button {
@@ -63,46 +135,50 @@ h1{
   cursor: pointer;
 }
 
-li{
-  list-style: none;
-  display: flex;
-  gap: 20px;
-  border: 1px solid #5B9BD5;
-  align-items: center;
-  justify-content: center;
-  padding: 30px;
+.btn-logout{
+  width: auto;
+  margin-top: 0px;
 }
 
-.floating-button {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 50px;
-  height: 50px;
-  background-color: #FFF; 
-  color: #5B9BD5; 
-  border-radius: 100%;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.btn-add{
+  padding: 10px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #4dcf4d; 
+  border: none;
+  border-radius: 5px;
   cursor: pointer;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  z-index: 999; 
-  transition: background-color 0.3s, color 0.3s;
-  border: 1px solid #5B9BD5
 }
 
-.floating-button:hover {
-  background-color: #5B9BD5; 
-  color: #FFF; 
+.btn-delete{
+  padding: 8px;
+  font-size: 16px;
+  color: #fff;
+  background-color: var(--base-red); 
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 10px;
 }
 
+.header-container{
+  width: 600px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 20px;
+
+  @media screen and (max-width: 700px) {
+    width: 100%;
+  }
+}
+
+/* LOGIN */
 .login-container {
   max-width: 300px;
   margin: 10px auto;
   padding: 20px;
-  border: 2px solid #35b1f9;
+  border: 2px solid var(--primary-color);
   border-radius: 5px;
   background-color: #f9f9f9;
 }
@@ -112,50 +188,51 @@ li{
   text-align: center;
 }
 
-h2 {
-  margin: 20px 0px;
-  text-align: center;
-}
-
 .form-group {
   margin-bottom: 15px;
 }
 
-label {
-  display: block;
-  margin-bottom: 5px;
+.error-message{
+  color: var(--base-red); 
 }
 
-input[type='text'],
-input[type='password'] {
-  width: 100%;
-  padding: 10px;
-  font-size: 16px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
+/* MODALS */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-y: scroll;
 }
 
-button[type='submit'], .btn-login {
-  width: 100%;
-  padding: 10px;
-  font-size: 16px;
-  color: #fff;
-  background-color: #007bff; 
+.modal-content {
+  background: var(--base-white);
+  padding: 20px;
+  border-radius: 8px;
+  position: relative;
+  overflow-y: scroll;
+  max-height: 100dvh;
+}
+
+.row{
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+.modal-content li {
   border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-top: 20px;
+  gap: 5px;
+  justify-content: start;
+  padding: 10px 5px;
 }
 
-button[type='submit']:hover, .btn-login:hover {
-  background-color: #0056b3; 
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
+/* LOADER IMAGE */
 .loader {
   border: 8px solid rgba(0, 0, 0, 0.1);
   border-left-color: #333;
@@ -164,4 +241,9 @@ button[type='submit']:hover, .btn-login:hover {
   height: 50px;
   animation: spin 1s linear infinite;
   display: flex;
+} 
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }

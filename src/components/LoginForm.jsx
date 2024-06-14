@@ -24,33 +24,21 @@ const PokeLogin = ({ onLogin }) => {
 
   return (
     <div className='login-container'>
-      <h2>Login</h2>
+      <h1 className="text-center text-3xl font-bold">Log in</h1>
       <form onSubmit={handleLogin}>
         <div>
           <label htmlFor="username">Username:</label>
-          <input
-            type="text"
-            id="username"
-            name="username"
-            value={form.username}
-            onChange={handleChange}
-            required
-          />
+          <input type="text" id="username" name="username" value={form.username} onChange={handleChange} required />
+        </div>
+        <div className='relative my-4 w-full'>
+          <label htmlFor="password">Password:</label>
+          <input type="password" id="password" name="password" value={form.password} onChange={handleChange} required />
         </div>
         <div>
-          <label htmlFor="password">Password:</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            value={form.password}
-            onChange={handleChange}
-            required
-          />
+          <button type="submit">Login</button>
         </div>
-        <button type="submit">Login</button>
       </form>
-      {message && <p>{message}</p>}
+      {message && <p className="error-message">{message}</p>}
     </div>
   );
 };

@@ -17,7 +17,9 @@ const PokeList = ({ userId }) => {
   };
 
   const handlePokemonClick = (pokemon) => {
-    setSelectedPokemon(pokemon);
+    if (event.target.tagName.toLowerCase() !== 'select') {
+      setSelectedPokemon(pokemon);
+    }
   };
 
   const handleCloseModal = () => {
@@ -27,18 +29,19 @@ const PokeList = ({ userId }) => {
   return (
     <div>
       <h2>My Pokemons</h2>
-      <ul>
-        {pokemons.map(({  id, name, lvl, evolutionId, types, selectedType, urlImagen, abilities }) => (
-          <li key={id} onClick={() => handlePokemonClick({  id, name, lvl, evolutionId, types, selectedType, urlImagen, abilities })}>
-            <select value={selectedType} onChange={(event) => handleTypeChange(event, id)}>
-              {types.map((type, index) => (
-                <option key={index} value={type}>{type}</option>
-              ))}
-            </select>
-            <strong>{name}</strong> Level: {lvl}  
-          </li>
-        ))}
-      </ul>
+      { pokemons ? (
+        <ul>
+          {pokemons.map(({  id, name, lvl, evolutionId, types, selectedType, urlImagen, abilities }) => (
+            <li key={id} onClick={() => handlePokemonClick({  id, name, lvl, evolutionId, types, selectedType, urlImagen, abilities })}>
+              <select value={selectedType} onChange={(event) => handleTypeChange(event, id)}>
+                {types.map((type, index) => (
+                  <option key={index} value={type}>{type}</option>
+                ))}
+              </select>
+              <strong>{name}</strong> Level: {lvl}  
+            </li>
+          ))}
+        </ul>) : (<h4>No estamos localizando tus Pokemons. Intenta agregando el primero.</h4>)}
       {selectedPokemon && <PokemonDetailsModal pokemon={selectedPokemon} onClose={handleCloseModal} /> }
     </div>
   );
